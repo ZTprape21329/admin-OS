@@ -1,4 +1,22 @@
 const express = require ('express');
-const pool = require('../pool.js');
+// const pool = require('../pool.js');
 let router = express.Router();
+router.get('/login', (req, res) => {
+    let uname = req.query.uname;
+    let upwd = req.query.upwd;
+    console.log(uname, upwd)
+    if(uname === 'admin' && upwd === '123456') {
+        res.json({code: 200})
+    } else {
+        res.json({code: 404})
+    }
+    // let sql = 'SELECT uname, upwd FROM info WHERE uname = ? AND upwd =?';
+    // pool.query(sql, [uname, upwd], (err, result) => {
+    //     if(err) throw err;
+    //     if(result.length > 0)  {
+    //         // console.log (result);
+    //         res.setEncoding(result);
+    //     }
+    // });
+});
 module.exports = router;

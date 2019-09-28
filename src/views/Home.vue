@@ -1,16 +1,21 @@
 <template>
   <div class="home">
-    <login/>
+   <Button type="primary" @click="out()">退出</Button>
   </div>
 </template>
 
 <script>
-import login from './Login.vue'
+import  hello from '../components/HelloWorld.vue'
 
 export default {
-  name: 'home',
+  name: 'hello',
   components: {
-    login
+   hello
+  },
+  methods: {
+    out() {
+      this.$router.replace('/')
+    }
   }
 }
 </script>
