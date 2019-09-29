@@ -14,7 +14,7 @@ export default {
   },
   methods: {
     out() {
-      this.$router.replace('/')
+      this.$router.replace('/login')
     }
   }
 }

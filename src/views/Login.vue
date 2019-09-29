@@ -25,6 +25,7 @@
   </div>
 </template>
 <script>
+import Qs from 'qs';
 export default {
   data () {
     return {
@@ -34,22 +35,27 @@ export default {
       },
       ruleInline: {
           user: [
-            { required: true, message: '输入用户名', trigger: 'blur' }
+            {required: true, message: '输入用户名', trigger: 'blur'}
           ],
           password: [
-            { required: true, message: '输入密码', trigger: 'blur' }
+            {required: true, message: '输入密码', trigger: 'blur'}
           ],
       }
     }
   },
+  computed: {
+    host() {
+      return this.$store.state.host
+    }
+  },
   methods: {
     login() {
-      this.axios.get('http://127.0.0.1:3000/login/login',{
-        params: {
-          uname: this.formInline.user,
-          upwd: this.formInline.password
-        }
-      }).then(res => {
+      let fromData = {
+        uname: this.formInline.user,
+        upwd: this.formInline.password
+      };
+      console.log(this.host)
+      this.axios.post(this.host+'/login/login', Qs.stringify(fromData)).then(res => {
        let reg = res.data.code;
        if(reg === 404) {
          this.$Notice.error({

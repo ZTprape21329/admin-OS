@@ -6,8 +6,6 @@ let pool = mysql.createPool({
     user: 'root',
     port: 3306,
     password: '',
-    // user: 'dbuser', // 'root',
-    // password: 'dbuser', // '123456',
     database: 'config',
     connectionLimit: '50'
 });

@@ -1,10 +1,9 @@
 const express = require ('express');
 // const pool = require('../pool.js');
 let router = express.Router();
-router.get('/login', (req, res) => {
-    let uname = req.query.uname;
-    let upwd = req.query.upwd;
-    console.log(uname, upwd)
+router.post('/login', (req, res) => {
+    let uname = req.body.uname;
+    let upwd = req.body.upwd;
     if(uname === 'admin' && upwd === '123456') {
         res.json({code: 200})
     } else {
