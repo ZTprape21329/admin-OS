@@ -9,12 +9,10 @@
                 <FormItem prop="user">
                     <Input type="text" v-model="formInline.user" placeholder="用户名">
                         <Icon size='16' type="ios-person-outline" slot="prepend"></Icon>
-                    </Input>
                 </FormItem><br>
                 <FormItem prop="password">
                     <Input type="password" v-model="formInline.password" placeholder="用户密码">
                         <Icon  :size='16' type="ios-lock-outline" slot="prepend"></Icon>
-                    </Input>
                 </FormItem><br>
                 <FormItem>
                     <Button @click="login()" type="primary" long>登录</Button>
@@ -25,6 +23,7 @@
   </div>
 </template>
 <script>
+import Qs from 'qs';
 export default {
   data () {
     return {
@@ -34,22 +33,27 @@ export default {
       },
       ruleInline: {
           user: [
-            { required: true, message: '输入用户名', trigger: 'blur' }
+            {required: true, message: '输入用户名', trigger: 'blur'}
           ],
           password: [
-            { required: true, message: '输入密码', trigger: 'blur' }
+            {required: true, message: '输入密码', trigger: 'blur'}
           ],
       }
     }
   },
+  computed: {
+    host() {
+      return this.$store.state.host
+    }
+  },
   methods: {
     login() {
-      this.axios.get('http://127.0.0.1:3000/login/login',{
-        params: {
-          uname: this.formInline.user,
-          upwd: this.formInline.password
-        }
-      }).then(res => {
+      let fromData = {
+        uname: this.formInline.user,
+        upwd: this.formInline.password
+      };
+      console.log(this.host)
+      this.axios.post(this.host+'/login/login', Qs.stringify(fromData)).then(res => {
        let reg = res.data.code;
        if(reg === 404) {
          this.$Notice.error({
