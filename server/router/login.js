@@ -5,7 +5,7 @@ router.post('/login', (req, res) => {
     let uname = req.body.uname;
     let upwd = req.body.upwd;
     if(uname === 'admin' && upwd === '123456') {
-        res.json({code: 200})
+        res.json({code: 200,uname})
     } else {
         res.json({code: 404})
     }

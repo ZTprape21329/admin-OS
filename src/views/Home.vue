@@ -58,6 +58,7 @@ export default {
     },
     methods: {
         outLogin() {
+            sessionStorage.clear()
             this.$router.replace('/')
         }
     }

@@ -7,11 +7,11 @@
           </p>
             <Form ref="formInline" :model="formInline" :rules="ruleInline">
                 <FormItem prop="user">
-                    <Input type="text" v-model="formInline.user" placeholder="用户名">
+                    <Input type="text" v-model="formInline.user" placeholder="用户名"/>
                         <Icon size='16' type="ios-person-outline" slot="prepend"></Icon>
                 </FormItem><br>
                 <FormItem prop="password">
-                    <Input type="password" v-model="formInline.password" placeholder="用户密码">
+                    <Input type="password" v-model="formInline.password" placeholder="用户密码" />
                         <Icon  :size='16' type="ios-lock-outline" slot="prepend"></Icon>
                 </FormItem><br>
                 <FormItem>
@@ -52,15 +52,15 @@ export default {
         uname: this.formInline.user,
         upwd: this.formInline.password
       };
-      console.log(this.host)
+    //   console.log(this.host)
       this.axios.post(this.host+'/login/login', Qs.stringify(fromData)).then(res => {
        let reg = res.data.code;
        if(reg === 404) {
-         this.$Notice.error({
-           title: '密码错误！'
-         })
+         this.$Message.error('密码错误！')
        } else if(reg === 200) {
+         sessionStorage.setItem('uname',res.data.uname)
          this.$router.replace('/home')
+         this.$Message.success('登陆成功！')
        }
       })
     }
