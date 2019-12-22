@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const prot = 3000;
 app.listen(prot, function() {
-    // console.log('connected to' +' ' + prot)
+    console.log('connected to' +' ' + prot)
 });
 //跨域访问
 const cors = require('cors');
