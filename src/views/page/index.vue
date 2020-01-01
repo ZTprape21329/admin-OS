@@ -28,6 +28,14 @@
                    :titleText="title"
                    ></echats>  
                 </div>
+                <div class="echartsContent">
+                   <echats style="width:100%;height:400px"
+                   :type="'line'"
+                   :data="data"
+                   :xData="xData"
+                   :titleText="title"
+                   ></echats>  
+                </div>
                 </div> 
         </Layout>
     </div>

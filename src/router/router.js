@@ -43,7 +43,7 @@ const router = new Router({
     ]
 });
 router.beforeEach((to, from, next) => {
-    console.log(to)
+    // console.log(to)
     // 判断该路由是否需要登录权限
     if (to.meta.login_auth) {
       if(!sessionStorage.getItem('uname')){
