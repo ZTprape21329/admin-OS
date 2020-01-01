@@ -22,6 +22,7 @@
             <div class="echartsMain">
                 <div class="echartsContent">
                    <echats style="width:100%;height:400px"
+                   :type="'bar'"
                    :data="data"
                    :xData="xData"
                    :titleText="title"
