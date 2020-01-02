@@ -11,7 +11,11 @@ app.use(cors({
     'Access-Control-Allow-Origin': '*',
     credentials: true
 }));
-app.use('/icon', express.static('../public'));
+// app.use('/icon', express.static('../public'));
+app.use(express.static("./public"));
 app.use(bodyParser.urlencoded({extended: false}));
+
 const loginRoute = require('./router/login');
+const list =require('./router/list');
 app.use('/login', loginRoute);
+app.use('/list', list);
